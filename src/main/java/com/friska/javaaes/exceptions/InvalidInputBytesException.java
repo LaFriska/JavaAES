@@ -1,4 +1,4 @@
-package com.friska.javaaes.key;
+package com.friska.javaaes.exceptions;
 
 import javax.annotation.Nonnull;
 

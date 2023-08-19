@@ -1,8 +1,8 @@
 package com.friska.javaaes;
 
 import com.friska.javaaes.key.AESKey;
-import com.friska.javaaes.key.InvalidAESKeyException;
-import com.friska.javaaes.key.InvalidInputBytesException;
+import com.friska.javaaes.exceptions.InvalidAESKeyException;
+import com.friska.javaaes.exceptions.InvalidInputBytesException;
 
 public class AESBlockCipher {
 
@@ -42,7 +42,7 @@ public class AESBlockCipher {
     }
 
     private void precond(byte[] inputBytes, AES aesType, AESKey key){
-        if(key.size() != aesType.keysize / 8)
+        if(key.wordsSize() != aesType.keysize / 8)
             throw  new InvalidAESKeyException("AES key size must match that of the chosen AES instance, " +
                     "in this case, it should be "
                     + aesType.keysize/8 +" bytes long.");
