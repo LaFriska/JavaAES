@@ -1,6 +1,7 @@
 package com.friska.javaaes.key;
 
 import com.friska.javaaes.exceptions.InvalidAESKeyException;
+import com.friska.javaaes.util.Assert;
 
 public class AESKey {
     public final Word[] words;
@@ -14,7 +15,7 @@ public class AESKey {
     }
 
     private Word[] getAsWords(byte[] bytes){
-        assert(bytes.length % 4 == 0);
+        Assert.a(bytes.length % 4 == 0);
         Word[] words = new Word[bytes.length/4];
         int wordPointer = 0;
         byte[] tempBytes = null;
@@ -29,9 +30,13 @@ public class AESKey {
             }
             tempBytes[i % 4] = bytes[i];
         }
+        words[wordPointer] = new Word(tempBytes);
         return words;
     }
 
+    /**
+     * Referred to as Nk in the official documentation.
+     * **/
     public int wordsSize(){
         return words.length;
     }
