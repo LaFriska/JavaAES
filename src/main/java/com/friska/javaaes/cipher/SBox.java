@@ -1,4 +1,4 @@
-package com.friska.javaaes.constants;
+package com.friska.javaaes.cipher;
 
 public class SBox {
 
@@ -9,9 +9,10 @@ public class SBox {
      * The Rijndael S-box had been designed in such a way that it promises maximum non-linearity.
      * This is effectively a transformation of every byte represented by elements in the Galois Field of 2^8
      * where its multiplicative inverse in this field is gone through a sophisticated affine transformation,
-     * where a carefully chosen matrix is multiplied with the addition of a carefully chosen vector to promise
-     * such non-linearity. It is imperative to leave the Rijndael S-box as it is, and any alterations to it
-     * could severely undermine AES' security.
+     * where a carefully chosen matrix is multiplied with another addition of a carefully chosen vector to promise
+     * such non-linearity. Note that all of these operations are done in modulo 2, in the Galois Field of 2^8.
+     * It is imperative to leave the Rijndael S-box as it is, and any alterations to it could seriously undermine AES' security.
+     * Also note that the non-inverse-SBox is also used in the key expansion, not just the SubBytes step.
      * **/
     private static final byte[] S_BOX = new byte[]{
             (byte) 0x63, (byte) 0x7c, (byte) 0x77, (byte) 0x7b, (byte) 0xf2, (byte) 0x6b, (byte) 0x6f, (byte) 0xc5, (byte) 0x30, (byte) 0x01, (byte) 0x67, (byte) 0x2b, (byte) 0xfe, (byte) 0xd7, (byte) 0xab, (byte) 0x76,

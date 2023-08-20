@@ -1,7 +1,7 @@
 package com.friska.javaaes.key;
 
 import com.friska.javaaes.AES;
-import com.friska.javaaes.constants.SBox;
+import com.friska.javaaes.cipher.SBox;
 import com.friska.javaaes.util.Assert;
 import com.friska.javaaes.util.BinaryUtil;
 
