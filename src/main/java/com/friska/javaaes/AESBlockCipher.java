@@ -32,7 +32,7 @@ public class AESBlockCipher {
     }
 
     private byte[][] copyToState(byte[] inputByte){
-        byte[][] state = new byte[AESConfig.BLOCK_LENGTH][AESConfig.BLOCK_WIDTH];
+        byte[][] state = new byte[4][4];
         int col = 0;
         for(int i = 0; i < inputByte.length; i++){
             col = i / 4;
@@ -46,8 +46,8 @@ public class AESBlockCipher {
             throw  new InvalidAESKeyException("AES key size must match that of the chosen AES instance, " +
                     "in this case, it should be "
                     + aesType.keysize/8 +" bytes long.");
-        if(inputBytes.length != AESConfig.BLOCK_LENGTH * AESConfig.BLOCK_WIDTH)
-            throw new InvalidInputBytesException("Cannot process input byte of length " + inputBytes.length + " for an AES block size of " + AESConfig.BLOCK_LENGTH * AESConfig.BLOCK_WIDTH);
+        if(inputBytes.length != 16)
+            throw new InvalidInputBytesException("Cannot process input byte of length " + inputBytes.length + " for an AES block size of 16.");
     }
 
 }

@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeySchedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/AESBlockCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/AESBlockCipher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/AESConfig.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +100,7 @@
       <workItem from="1692451001552" duration="5689000" />
       <workItem from="1692456771941" duration="27000" />
       <workItem from="1692499241800" duration="1355000" />
-      <workItem from="1692507124344" duration="3753000" />
+      <workItem from="1692507124344" duration="4626000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -122,7 +123,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692456763796</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added KeySchedule class for further abstraction">
+      <created>1692517771562</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692517771562</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactored SBox directory and Javadoc">
+      <created>1692518281424</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692518281424</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +147,8 @@
     <MESSAGE value="Initialized block cipher and various other classes" />
     <MESSAGE value="Adding words to keys" />
     <MESSAGE value="KeyExpander finished, added SBox and methods to expand key" />
-    <option name="LAST_COMMIT_MESSAGE" value="KeyExpander finished, added SBox and methods to expand key" />
+    <MESSAGE value="Added KeySchedule class for further abstraction" />
+    <MESSAGE value="Refactored SBox directory and Javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored SBox directory and Javadoc" />
   </component>
 </project>
