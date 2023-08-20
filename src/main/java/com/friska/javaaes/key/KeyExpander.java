@@ -32,7 +32,9 @@ public class KeyExpander {
     private final AESKey key;
     private final AES aes;
 
-    private Word[] words;
+    private final Word[] words;
+
+    private KeySchedule schedule = null;
     public KeyExpander(AESKey key, AES aes){
         Assert.a(key.keySize() == aes.keysize / 8);
         this.key = key;
@@ -50,6 +52,10 @@ public class KeyExpander {
         return words;
     }
 
+    public KeySchedule getSchedule() {
+        return schedule;
+    }
+
     public void expand(){
         Word temp;
         byte[] tempBytes;
@@ -63,6 +69,7 @@ public class KeyExpander {
             }
             words[i] = BinaryUtil.xorWords(words[i - nk], temp);
         }
+        schedule = new KeySchedule(words, aes);
     }
 
     private Word rotWord(@Nonnull Word word){

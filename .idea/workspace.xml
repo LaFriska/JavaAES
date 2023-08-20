@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/constants/SBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/util/Assert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/util/BinaryUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeySchedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/AES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/AES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/AESKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/AESKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +56,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -100,7 +96,10 @@
       <updated>1692365126691</updated>
       <workItem from="1692365127225" duration="2745000" />
       <workItem from="1692411578461" duration="18377000" />
-      <workItem from="1692451001552" duration="5455000" />
+      <workItem from="1692451001552" duration="5689000" />
+      <workItem from="1692456771941" duration="27000" />
+      <workItem from="1692499241800" duration="1355000" />
+      <workItem from="1692507124344" duration="3753000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -116,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692424165583</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="KeyExpander finished, added SBox and methods to expand key">
+      <created>1692456763796</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692456763796</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +131,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialized block cipher and various other classes" />
     <MESSAGE value="Adding words to keys" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding words to keys" />
+    <MESSAGE value="KeyExpander finished, added SBox and methods to expand key" />
+    <option name="LAST_COMMIT_MESSAGE" value="KeyExpander finished, added SBox and methods to expand key" />
   </component>
 </project>
