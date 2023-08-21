@@ -7,10 +7,10 @@ public class SBox {
      * using a 2D array, a 1D byte array is used for easier access to the substitute byte.
      *<br><br>
      * The Rijndael S-box had been designed in such a way that it promises maximum non-linearity.
-     * This is effectively a transformation of every byte represented by elements in the Galois Field of 2^8
+     * This is effectively a transformation of every byte represented by elements in the Galois Field of 2⁸
      * where its multiplicative inverse in this field is gone through a sophisticated affine transformation,
      * where a carefully chosen matrix is multiplied with another addition of a carefully chosen vector to promise
-     * such non-linearity. Note that all of these operations are done in modulo 2, in the Galois Field of 2^8.
+     * such non-linearity. Note that all of these operations are done in modulo 2, in the Galois Field of 2⁸.
      * It is imperative to leave the Rijndael S-box as it is, and any alterations to it could seriously undermine AES' security.
      * Also note that the non-inverse-SBox is also used in the key expansion, not just the SubBytes step.
      * **/

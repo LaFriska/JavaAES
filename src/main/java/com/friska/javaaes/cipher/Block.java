@@ -1,9 +1,7 @@
 package com.friska.javaaes.cipher;
 
 import com.friska.javaaes.key.KeySchedule;
-import com.friska.javaaes.key.Word;
 import com.friska.javaaes.util.Assert;
-import com.friska.javaaes.util.ByteUtil;
 
 public class Block {
 
