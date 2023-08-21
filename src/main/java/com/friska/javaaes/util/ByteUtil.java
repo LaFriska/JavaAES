@@ -2,15 +2,13 @@ package com.friska.javaaes.util;
 
 import com.friska.javaaes.key.Word;
 
-public class BinaryUtil {
-    public static byte xorBytes(byte a, byte b) {
-        return (byte) (a ^ b);
-    }
+public class ByteUtil {
+
 
     public static Word xorWords(Word a, Word b) {
         byte[] bytes = new byte[4];
         for(int i = 0; i <= 3; i++){
-            bytes[i] = xorBytes(a.getBytes()[i], b.getBytes()[i]);
+            bytes[i] = (byte) (a.getBytes()[i] ^ b.getBytes()[i]);
         }
         return new Word(bytes);
     }

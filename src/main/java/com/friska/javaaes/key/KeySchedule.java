@@ -24,6 +24,10 @@ public class KeySchedule {
         return res;
     }
 
+    public AES getAES() {
+        return aes;
+    }
+
     /**
      * Input the number identifier of the round as a parameter. For the key XORed
      * into the state array before the round start, input "0" as round.

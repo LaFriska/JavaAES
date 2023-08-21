@@ -4,20 +4,10 @@ import com.friska.javaaes.key.AESKey;
 import com.friska.javaaes.exceptions.InvalidAESKeyException;
 import com.friska.javaaes.exceptions.InvalidInputBytesException;
 
+@Deprecated
 public class AESBlockCipher {
 
-    /**
-     * The state block is represented as a 2D array of the following configuration:
-     * <br><br>
-     * state[rowIndex][columnIndex]
-     * <br><br>
-     * where the rowIndex goes up and down while the column goes left and right.
-     * <br><br>
-     * [0,0][0,1][0,2][0,3]<br>
-     * [1,0][1,1][1,2][1,3]<br>
-     * [2,0][2,1][2,2][2,3]<br>
-     * [3,0][3,1][3,2][3,3]<br>
-     * **/
+
     private byte[][] state;
 
     private AES type;

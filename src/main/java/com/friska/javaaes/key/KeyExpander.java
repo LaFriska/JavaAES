@@ -3,7 +3,7 @@ package com.friska.javaaes.key;
 import com.friska.javaaes.AES;
 import com.friska.javaaes.cipher.SBox;
 import com.friska.javaaes.util.Assert;
-import com.friska.javaaes.util.BinaryUtil;
+import com.friska.javaaes.util.ByteUtil;
 
 import javax.annotation.Nonnull;
 
@@ -67,7 +67,7 @@ public class KeyExpander {
             }else if(nk > 6 && i % nk == 4){
                 subWord(temp);
             }
-            words[i] = BinaryUtil.xorWords(words[i - nk], temp);
+            words[i] = ByteUtil.xorWords(words[i - nk], temp);
         }
         schedule = new KeySchedule(words, aes);
     }
@@ -89,7 +89,7 @@ public class KeyExpander {
     }
 
     private Word addConstant(@Nonnull Word word, int constantIndex){
-        return BinaryUtil.xorWords(word, RCON[constantIndex]);
+        return ByteUtil.xorWords(word, RCON[constantIndex]);
     }
 
 }
