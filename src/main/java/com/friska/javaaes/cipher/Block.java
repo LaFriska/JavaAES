@@ -2,10 +2,13 @@ package com.friska.javaaes.cipher;
 
 import com.friska.javaaes.key.KeySchedule;
 import com.friska.javaaes.util.Assert;
+import com.friska.javaaes.util.ByteUtil;
 
 import static com.friska.javaaes.cipher.GaloisOperation.*;
 
 public class Block {
+
+    private static final boolean DEBUG = true;
 
     /**
      * The state block is represented as a 2D array of the following configuration:
@@ -34,19 +37,20 @@ public class Block {
 
     public Block(byte[] inputBytes, KeySchedule schedule){
         Assert.a(inputBytes.length == 16);
-        state = formatState(inputBytes);
         this.schedule = schedule;
+        state = formatState(inputBytes);
+        if(DEBUG) printState("INITIAL STATE");
     }
 
 
     private byte[][] formatState(byte[] inputBytes){
         byte[][] res = new byte[4][4];
-        int row = -1;
-        int col;
+        int col = -1;
+        int row;
         for(int i = 0; i <= 15; i++){
-            col = i % 4;
-            if(col == 0) row++;
-            res[col][row] = inputBytes[col * 4 + row];
+            row = i % 4;
+            if(row == 0) col++;
+            res[row][col] = inputBytes[i];
         }
         return res;
     }
@@ -55,16 +59,18 @@ public class Block {
 
         int nr = schedule.getAES().rounds;
 
-        xorWith(schedule.getRoundKey(0));
+        add(schedule.getRoundKey(0));
         for(int i = 1; i <= nr - 1; i++){
+            if(DEBUG) System.out.println("----------------ROUND " + i + "---------------------------");
             subBytes();
             shiftRows();
             mixColumns();
-            xorWith(schedule.getRoundKey(i));
+            add(schedule.getRoundKey(i));
         }
+        if(DEBUG) System.out.println("----------------ROUND " + nr + "---------------------------");
         subBytes();
         shiftRows();
-        xorWith(schedule.getRoundKey(nr));
+        add(schedule.getRoundKey(nr));
         return this;
     }
 
@@ -75,6 +81,7 @@ public class Block {
                 state[a][i] = mixed[a];
             }
         }
+        if(DEBUG) printState("MIX COLUMNS");
     }
 
     private byte[] getMixedColumn(int col){
@@ -91,17 +98,21 @@ public class Block {
     }
 
     private void subBytes(){
-        int row = -1;
-        int col;
+        int col = -1;
+        int row;
         for(int i = 0; i <= 15; i++){
-            col = i % 4;
-            if(col == 0) row++;
-            state[col][row] = SBox.getSub(state[col][row]);
+            row = i % 4;
+            if(row == 0) col++;
+            state[row][col] = SBox.getSub(state[row][col]);
         }
+        if(DEBUG) printState("SUB BYTES");
     }
 
     private void shiftRows(){
-        for(int i = 1; i <= 3; i++) state[i] = getShiftedRow(state[i], i);
+        for(int i = 1; i <= 3; i++) {
+            getShiftedRow(state[i], i);
+        }
+        if(DEBUG) printState("SHIFT ROWS");
     }
 
     private byte[] getShiftedRow(byte[] row, int offset){
@@ -113,26 +124,35 @@ public class Block {
         return row;
     }
 
-    public Block xorWith(byte[] bytes){
-        int row = -1;
-        int col;
+    public Block add(byte[] bytes){
+        int col = -1;
+        int row;
         for(int i = 0; i <= 15; i++){
-            col = i % 4;
-            if(i % 4 == 0) row++;
-            state[col][row] = (byte) (state[col][row] ^ bytes[i]);
+            row = i % 4;
+            if(i % 4 == 0) col++;
+            state[row][col] = (byte) (state[row][col] ^ bytes[i]);
         }
+        if(DEBUG) printState("ADD KEY");
         return this;
     }
 
     public byte[] getOutputBytes() {
         byte[] res = new byte[16];
-        int row = -1;
-        int col;
+        int col = -1;
+        int row;
         for(int i = 0; i <= 15; i++){
-            col = i % 4;
-            if(col == 0) row++;
+            row = i % 4;
+            if(row == 0) col++;
             res[i] = state[row][col];
         }
         return res;
+    }
+
+    private void printState(String preface){
+        StringBuilder sb = new StringBuilder(preface).append("\n\n");
+        for(int i = 0; i <= 3; i++){
+            sb.append(ByteUtil.byteArrayToHexString(state[i])).append("\n");
+        }
+        System.out.println(sb);
     }
 }

@@ -7,8 +7,6 @@
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/GaloisOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/GaloisOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/util/ByteUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/util/ByteUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +103,7 @@
       <workItem from="1692499241800" duration="1355000" />
       <workItem from="1692507124344" duration="7357000" />
       <workItem from="1692533559748" duration="6941000" />
-      <workItem from="1692695495778" duration="1076000" />
+      <workItem from="1692695495778" duration="3697000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -163,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692608450377</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Implemented mixColumns">
+      <created>1692697151215</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1692697151215</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,14 +183,15 @@
     <MESSAGE value="Deleted AESConfig" />
     <MESSAGE value="Implemented AddRoundKey and SubBytes" />
     <MESSAGE value="Implemented the xTimes function for mixColumns step" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the xTimes function for mixColumns step" />
+    <MESSAGE value="Implemented mixColumns" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented mixColumns" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>15</line>
+          <line>18</line>
           <properties class="com.friska.javaaes.test.Test" method="main">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
