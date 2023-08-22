@@ -14,8 +14,8 @@ public class ByteUtil {
     }
 
     public static byte[] getBytesFromHexString(String hexString){
-        Assert.a(hexString.length() % 2 == 0);
         hexString = hexString.toLowerCase().replaceAll(" ", "");
+        Assert.a(hexString.length() % 2 == 0);
         boolean sixteenth = true;
         String hexSet = "0123456789abcdef";
         int value = 0;
@@ -32,5 +32,21 @@ public class ByteUtil {
             sixteenth = !sixteenth;
         }
         return bytes;
+    }
+
+    public static String byteArrayToHexString(byte[] byteArray) {
+        StringBuilder hexString = new StringBuilder();
+
+        for (byte b : byteArray) {
+            String hex = String.format("%02X", b & 0xFF); // Convert byte to 2-digit hex
+            hexString.append(hex).append(" ");
+        }
+
+        // Remove the trailing space
+        if (hexString.length() > 0) {
+            hexString.setLength(hexString.length() - 1);
+        }
+
+        return hexString.toString();
     }
 }
