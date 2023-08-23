@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Cipher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/SBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/SBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +106,8 @@
       <workItem from="1692507124344" duration="7357000" />
       <workItem from="1692533559748" duration="6941000" />
       <workItem from="1692695495778" duration="5683000" />
-      <workItem from="1692788811151" duration="1984000" />
+      <workItem from="1692788811151" duration="3269000" />
+      <workItem from="1692798333308" duration="1465000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -198,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692790746904</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Refactored out encrypt and decrypt methods">
+      <created>1692791320517</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692791320517</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +227,8 @@
     <MESSAGE value="Finalised basic block cipher logic" />
     <MESSAGE value="Deleted AESBlockCipher" />
     <MESSAGE value="Initialised ECB encryption" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialised ECB encryption" />
+    <MESSAGE value="Refactored out encrypt and decrypt methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored out encrypt and decrypt methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

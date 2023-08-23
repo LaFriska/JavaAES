@@ -8,7 +8,7 @@ import static com.friska.javaaes.cipher.GaloisOperation.*;
 
 public class Block implements Cipher<Block>{
 
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     /**
      * The state block is represented as a 2D array of the following configuration:
@@ -62,21 +62,27 @@ public class Block implements Cipher<Block>{
         add(schedule.getRoundKey(0));
         for(int i = 1; i <= nr - 1; i++){
             if(DEBUG) System.out.println("----------------ROUND " + i + "---------------------------");
-            subBytes();
-            shiftRows();
+            subBytes(false);
+            shiftRows(false);
             mixColumns();
             add(schedule.getRoundKey(i));
         }
         if(DEBUG) System.out.println("----------------ROUND " + nr + "---------------------------");
-        subBytes();
-        shiftRows();
+        subBytes(false);
+        shiftRows(false);
         add(schedule.getRoundKey(nr));
         return this;
     }
 
     @Override
     public Block decrypt(){
-        
+        add(schedule.getRoundKey(nr));
+        for(int i = nr - 1; i >= 1; i--){
+            shiftRows(true);
+            subBytes(true);
+            add(schedule.getRoundKey(i));
+
+        }
     }
 
     private void mixColumns(){
@@ -102,31 +108,30 @@ public class Block implements Cipher<Block>{
         return res;
     }
 
-    private void subBytes(){
+    private void subBytes(boolean inv){
         int col = -1;
         int row;
         for(int i = 0; i <= 15; i++){
             row = i % 4;
             if(row == 0) col++;
-            state[row][col] = SBox.getSub(state[row][col]);
+            state[row][col] = SBox.getSub(state[row][col], inv);
         }
         if(DEBUG) printState("SUB BYTES");
     }
 
-    private void shiftRows(){
+    private void shiftRows(boolean inv){
         for(int i = 1; i <= 3; i++) {
-            getShiftedRow(state[i], i);
+            getShiftedRow(state[i], inv ? -i : i);
         }
         if(DEBUG) printState("SHIFT ROWS");
     }
 
-    private byte[] getShiftedRow(byte[] row, int offset){
+    private void getShiftedRow(byte[] row, int offset){
         byte[] copy = row.clone();
         for (int i = 0; i < copy.length; i++) {
-            row[i] = copy[(i + offset) % 4];
+            row[i] = copy[(i + offset + 4) % 4];
         }
-        copy = null; //Readies it for gc
-        return row;
+        copy = null; //Deletes the pointer
     }
 
     public Block add(byte[] bytes){

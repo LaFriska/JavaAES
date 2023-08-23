@@ -83,7 +83,7 @@ public class KeyExpander {
 
     private Word subWord(@Nonnull Word word){
         for(int i = 0; i < 4; i++){
-            word.bytes[i] = SBox.getSub(word.bytes[i]);
+            word.bytes[i] = SBox.getSub(word.bytes[i], false);
         }
         return word;
     }
