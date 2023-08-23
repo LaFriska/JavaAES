@@ -6,7 +6,7 @@ import com.friska.javaaes.util.ByteUtil;
 
 import static com.friska.javaaes.cipher.GaloisOperation.*;
 
-public class Block {
+public class Block implements Cipher<Block>{
 
     private static final boolean DEBUG = false;
 
@@ -34,10 +34,12 @@ public class Block {
     private final byte[/*Row index*/][/*Column index*/] state;
 
     private final KeySchedule schedule;
+    private final int nr;
 
     public Block(byte[] inputBytes, KeySchedule schedule){
         Assert.a(inputBytes.length == 16);
         this.schedule = schedule;
+        nr = schedule.getAES().rounds;
         state = formatState(inputBytes);
         if(DEBUG) printState("INITIAL STATE");
     }
@@ -55,10 +57,8 @@ public class Block {
         return res;
     }
 
+    @Override
     public Block encrypt(){
-
-        int nr = schedule.getAES().rounds;
-
         add(schedule.getRoundKey(0));
         for(int i = 1; i <= nr - 1; i++){
             if(DEBUG) System.out.println("----------------ROUND " + i + "---------------------------");
@@ -72,6 +72,11 @@ public class Block {
         shiftRows();
         add(schedule.getRoundKey(nr));
         return this;
+    }
+
+    @Override
+    public Block decrypt(){
+        
     }
 
     private void mixColumns(){
