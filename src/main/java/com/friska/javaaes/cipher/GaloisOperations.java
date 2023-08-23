@@ -2,7 +2,7 @@ package com.friska.javaaes.cipher;
 
 import com.friska.javaaes.util.Assert;
 
-public class GaloisOperation {
+public class GaloisOperations {
     /**
      * Below is a byte representation of the polynomial used for multiplication of
      * bytes in the Galois Field of 2⁸. This constant is chosen for the Rijndael cipher to

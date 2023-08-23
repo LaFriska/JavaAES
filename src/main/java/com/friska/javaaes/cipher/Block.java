@@ -4,7 +4,7 @@ import com.friska.javaaes.key.KeySchedule;
 import com.friska.javaaes.util.Assert;
 import com.friska.javaaes.util.ByteUtil;
 
-import static com.friska.javaaes.cipher.GaloisOperation.*;
+import static com.friska.javaaes.cipher.GaloisOperations.*;
 
 public class Block implements Cipher<Block>{
 
