@@ -41,7 +41,7 @@ public class Block implements Cipher<Block>{
         this.schedule = schedule;
         nr = schedule.getAES().rounds;
         state = formatState(inputBytes);
-        if(DEBUG) printState("INITIAL STATE");
+        debug("INITIAL STATE");
     }
 
 
@@ -61,13 +61,13 @@ public class Block implements Cipher<Block>{
     public Block encrypt(){
         add(schedule.getRoundKey(0));
         for(int i = 1; i <= nr - 1; i++){
-            if(DEBUG) System.out.println("----------------ROUND " + i + "---------------------------");
+            debug("----------------ROUND " + i + "---------------------------");
             subBytes(false);
             shiftRows(false);
-            mixColumns();
+            mixColumns(false);
             add(schedule.getRoundKey(i));
         }
-        if(DEBUG) System.out.println("----------------ROUND " + nr + "---------------------------");
+        debug("----------------ROUND " + nr + "---------------------------");
         subBytes(false);
         shiftRows(false);
         add(schedule.getRoundKey(nr));
@@ -76,32 +76,40 @@ public class Block implements Cipher<Block>{
 
     @Override
     public Block decrypt(){
+        debug("----------------ROUND " + nr + "---------------------------");
         add(schedule.getRoundKey(nr));
         for(int i = nr - 1; i >= 1; i--){
             shiftRows(true);
             subBytes(true);
+            debug("----------------ROUND " + i + "---------------------------");
             add(schedule.getRoundKey(i));
-
+            mixColumns(true);
         }
+        shiftRows(true);
+        subBytes(true);
+        add(schedule.getRoundKey(0));
+        return this;
     }
 
-    private void mixColumns(){
+    private void mixColumns(boolean inv){
         for(int i = 0; i <= 3; i++){
-            byte[] mixed = getMixedColumn(i);
+            byte[] mixed = getMixedColumn(i, inv);
             for(int a = 0; a < mixed.length; a++){
                 state[a][i] = mixed[a];
             }
         }
-        if(DEBUG) printState("MIX COLUMNS");
+        debug("MIX COLUMNS", inv);
     }
 
-    private byte[] getMixedColumn(int col){
+    private byte[] getMixedColumn(int col, boolean inv){
         byte[] res = new byte[4];
         byte temp;
         for(int matrixRow = 0; matrixRow <= 3; matrixRow++){
             temp = 0;
             for(int i = 0; i <= 3; i++){
-                temp ^= multiply(state[i][col], THE_MATRIX[matrixRow][i]);
+                temp ^= multiply(state[i][col], inv ?
+                        INVERSE_MATRIX[matrixRow][i]
+                      : THE_MATRIX[matrixRow][i]);
             }
             res[matrixRow] = temp;
         }
@@ -116,14 +124,14 @@ public class Block implements Cipher<Block>{
             if(row == 0) col++;
             state[row][col] = SBox.getSub(state[row][col], inv);
         }
-        if(DEBUG) printState("SUB BYTES");
+        debug("SUB BYTES", inv);
     }
 
     private void shiftRows(boolean inv){
         for(int i = 1; i <= 3; i++) {
             getShiftedRow(state[i], inv ? -i : i);
         }
-        if(DEBUG) printState("SHIFT ROWS");
+        debug("SHIFT ROWS", inv);
     }
 
     private void getShiftedRow(byte[] row, int offset){
@@ -142,7 +150,7 @@ public class Block implements Cipher<Block>{
             if(i % 4 == 0) col++;
             state[row][col] = (byte) (state[row][col] ^ bytes[i]);
         }
-        if(DEBUG) printState("ADD KEY");
+        debug("ADD KEY");
         return this;
     }
 
@@ -164,5 +172,13 @@ public class Block implements Cipher<Block>{
             sb.append(ByteUtil.byteArrayToHexString(state[i])).append("\n");
         }
         System.out.println(sb);
+    }
+
+    private void debug(String str){
+        debug(str, false);
+    }
+
+    private void debug(String str, boolean inv){
+        if(DEBUG) printState(inv ? "INVERSED " + str : str);
     }
 }

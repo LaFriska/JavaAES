@@ -25,6 +25,17 @@ public class GaloisOperations {
     };
 
     /**
+     * Below is the matrix used for the invMixColumns step, as each element is
+     * carefully chose to undo the diffusion created by mixColumns.
+     * */
+    public static final int[][] INVERSE_MATRIX = new int[][]{
+            new int[]{14,11,13,9},
+            new int[]{9,14,11,13},
+            new int[]{13,9,14,11},
+            new int[]{11,13,9,14}
+    };
+
+    /**
      * Multiplies the given byte by 2 in the Galois Field of 2⁸ modulo the modulo polynomial determined specifically in Rijndael.
      * The implemented method to computationally efficiently perform this mathematical operation is to apply a bit-wise
      * circular shift of 1 to the input byte, and check whether the most significant bit of
@@ -40,12 +51,33 @@ public class GaloisOperations {
     }
 
     public static byte multiply(byte value, int multiplier){
-        Assert.a(multiplier >= 1 && multiplier <= 3);
-        if(multiplier == 1){
-            return value;
-        }else if (multiplier == 2){
-            return xTimes(value);
+        switch (multiplier){
+            case 1 -> {
+                return value;
+            }
+            case 2 -> {
+                return xTimes(value);
+            }
+            case 3 -> {
+                return (byte) (xTimes(value) ^ value);
+            }
+            case 8 ->{
+                //This case is only used for the sake of recursion of multiple() method.
+                return xTimes(xTimes(xTimes(value)));
+            }
+            case 9 -> {
+                return (byte) (multiply(value, 8) ^ value);
+            }
+            case 11 -> {
+                return (byte) (multiply(value, 8) ^ multiply(value, 3));
+            }
+            case 13 -> {
+                return (byte) (multiply(value, 8) ^ xTimes(xTimes(value)) ^ value);
+            }
+            case 14 -> {
+                return (byte) (multiply(value, 8) ^ xTimes(multiply(value, 3)));
+            }
+            default -> throw new RuntimeException("Cannot perform galois multiplication on " + multiplier +".");
         }
-        return (byte) (xTimes(value) ^ value);
     }
 }
