@@ -36,5 +36,4 @@ public class SBox {
     public static byte getSub(byte b){
         return S_BOX[b >= 0 ? b : b + 256];
     }
-
 }

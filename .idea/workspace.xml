@@ -7,6 +7,7 @@
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/SBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/SBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +104,7 @@
       <workItem from="1692499241800" duration="1355000" />
       <workItem from="1692507124344" duration="7357000" />
       <workItem from="1692533559748" duration="6941000" />
-      <workItem from="1692695495778" duration="3697000" />
+      <workItem from="1692695495778" duration="5683000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -168,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692697151215</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fixed row and col index are switched">
+      <created>1692699721161</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692699721161</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +192,8 @@
     <MESSAGE value="Implemented AddRoundKey and SubBytes" />
     <MESSAGE value="Implemented the xTimes function for mixColumns step" />
     <MESSAGE value="Implemented mixColumns" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented mixColumns" />
+    <MESSAGE value="Fixed row and col index are switched" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed row and col index are switched" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -197,6 +206,11 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
