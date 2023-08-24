@@ -59,35 +59,35 @@ public class Block implements Cipher<Block>{
 
     @Override
     public Block encrypt(){
-        add(schedule.getRoundKey(0));
+        addRoundKey(schedule.getRoundKey(0));
         for(int i = 1; i <= nr - 1; i++){
             debug("----------------ROUND " + i + "---------------------------");
             subBytes(false);
             shiftRows(false);
             mixColumns(false);
-            add(schedule.getRoundKey(i));
+            addRoundKey(schedule.getRoundKey(i));
         }
         debug("----------------ROUND " + nr + "---------------------------");
         subBytes(false);
         shiftRows(false);
-        add(schedule.getRoundKey(nr));
+        addRoundKey(schedule.getRoundKey(nr));
         return this;
     }
 
     @Override
     public Block decrypt(){
         debug("----------------ROUND " + nr + "---------------------------");
-        add(schedule.getRoundKey(nr));
+        addRoundKey(schedule.getRoundKey(nr));
         for(int i = nr - 1; i >= 1; i--){
             shiftRows(true);
             subBytes(true);
             debug("----------------ROUND " + i + "---------------------------");
-            add(schedule.getRoundKey(i));
+            addRoundKey(schedule.getRoundKey(i));
             mixColumns(true);
         }
         shiftRows(true);
         subBytes(true);
-        add(schedule.getRoundKey(0));
+        addRoundKey(schedule.getRoundKey(0));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class Block implements Cipher<Block>{
         copy = null; //Deletes the pointer
     }
 
-    public Block add(byte[] bytes){
+    public Block addRoundKey(byte[] bytes){
         int col = -1;
         int row;
         for(int i = 0; i <= 15; i++){
