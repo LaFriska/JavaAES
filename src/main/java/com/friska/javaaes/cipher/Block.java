@@ -4,6 +4,8 @@ import com.friska.javaaes.key.KeySchedule;
 import com.friska.javaaes.util.Assert;
 import com.friska.javaaes.util.ByteUtil;
 
+import javax.annotation.Nullable;
+
 import static com.friska.javaaes.cipher.GaloisOperations.*;
 
 public class Block implements Cipher<Block>{
@@ -36,12 +38,26 @@ public class Block implements Cipher<Block>{
     private final KeySchedule schedule;
     private final int nr;
 
-    public Block(byte[] inputBytes, KeySchedule schedule){
+    /**
+     * The initialization vector is a way to chain the block to either a previous block
+     * or a pre-defined vector before the block is encrypted. This is used especially in the
+     * CBC mode of operation. When no initialization vector is to be used, null should be parsed
+     * into the IV parameter in the constructor.
+     * */
+    @Nullable
+    private final byte[] iv;
+
+    public Block(byte[] inputBytes, KeySchedule schedule, @Nullable byte[] initialisationVector){
         Assert.a(inputBytes.length == 16);
         this.schedule = schedule;
         nr = schedule.getAES().rounds;
         state = formatState(inputBytes);
+        this.iv = initialisationVector;
         debug("INITIAL STATE");
+    }
+
+    public Block(byte[] inputBytes, KeySchedule schedule){
+        this(inputBytes, schedule, null);
     }
 
 
@@ -59,6 +75,7 @@ public class Block implements Cipher<Block>{
 
     @Override
     public Block encrypt(){
+        if(iv != null) addRoundKey(iv);
         addRoundKey(schedule.getRoundKey(0));
         for(int i = 1; i <= nr - 1; i++){
             debug("----------------ROUND " + i + "---------------------------");
@@ -88,6 +105,7 @@ public class Block implements Cipher<Block>{
         shiftRows(true);
         subBytes(true);
         addRoundKey(schedule.getRoundKey(0));
+        if(iv != null) addRoundKey(iv);
         return this;
     }
 
@@ -147,7 +165,7 @@ public class Block implements Cipher<Block>{
         int row;
         for(int i = 0; i <= 15; i++){
             row = i % 4;
-            if(i % 4 == 0) col++;
+            if(row == 0) col++;
             state[row][col] = (byte) (state[row][col] ^ bytes[i]);
         }
         debug("ADD KEY");
