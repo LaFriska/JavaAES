@@ -56,7 +56,7 @@ public class KeyExpander {
         return schedule;
     }
 
-    public void expand(){
+    public KeyExpander expand(){
         Word temp;
         byte[] tempBytes;
         int nk = key.wordsSize();
@@ -70,6 +70,7 @@ public class KeyExpander {
             words[i] = ByteUtil.xorWords(words[i - nk], temp);
         }
         schedule = new KeySchedule(words, aes);
+        return this;
     }
 
     private Word rotWord(@Nonnull Word word){

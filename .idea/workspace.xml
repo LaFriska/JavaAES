@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/EncryptionECB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/EncryptionECB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +19,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -108,7 +109,7 @@
       <workItem from="1692695495778" duration="5683000" />
       <workItem from="1692788811151" duration="3269000" />
       <workItem from="1692798333308" duration="6113000" />
-      <workItem from="1692842261742" duration="2131000" />
+      <workItem from="1692842261742" duration="5683000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -236,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692852252843</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added initialisation vector param into Block">
+      <created>1692853763921</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1692853763921</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,19 +269,20 @@
     <MESSAGE value="Renamed GaloisOperation to GaloisOperations" />
     <MESSAGE value="Implemented decryption to Block" />
     <MESSAGE value="Renamed add() --&gt; addRoundKey()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed add() --&gt; addRoundKey()" />
+    <MESSAGE value="Added initialisation vector param into Block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added initialisation vector param into Block" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>54</line>
+          <line>66</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>14</line>
+          <line>15</line>
           <properties class="com.friska.javaaes.test.Test" method="main">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

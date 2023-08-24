@@ -10,7 +10,7 @@ import static com.friska.javaaes.cipher.GaloisOperations.*;
 
 public class Block implements Cipher<Block>{
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     /**
      * The state block is represented as a 2D array of the following configuration:
