@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/Encryption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/Mode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/cipher/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/EncryptionECB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/EncryptionECB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/key/KeyExpander.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +17,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -109,7 +108,7 @@
       <workItem from="1692695495778" duration="5683000" />
       <workItem from="1692788811151" duration="3269000" />
       <workItem from="1692798333308" duration="6113000" />
-      <workItem from="1692842261742" duration="5683000" />
+      <workItem from="1692842261742" duration="10923000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -244,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692853763921</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="ECB encryption added for byte array buffers">
+      <created>1692868696561</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1692868696561</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,19 +276,20 @@
     <MESSAGE value="Implemented decryption to Block" />
     <MESSAGE value="Renamed add() --&gt; addRoundKey()" />
     <MESSAGE value="Added initialisation vector param into Block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added initialisation vector param into Block" />
+    <MESSAGE value="ECB encryption added for byte array buffers" />
+    <option name="LAST_COMMIT_MESSAGE" value="ECB encryption added for byte array buffers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>66</line>
+          <line>65</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>15</line>
+          <line>18</line>
           <properties class="com.friska.javaaes.test.Test" method="main">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
