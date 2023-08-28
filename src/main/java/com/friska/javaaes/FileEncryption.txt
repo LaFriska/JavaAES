@@ -1,0 +1,142 @@
+//Temporary
+package com.friska.javaaes;
+
+import com.friska.javaaes.encryption.EncryptionECB;
+import com.friska.javaaes.encryption.Mode;
+import com.friska.javaaes.exceptions.EncryptionException;
+import com.friska.javaaes.exceptions.InvalidAESKeyException;
+import com.friska.javaaes.exceptions.PaddingException;
+import com.friska.javaaes.key.AESKey;
+import com.friska.javaaes.key.KeyExpander;
+import com.friska.javaaes.key.KeySchedule;
+
+import java.io.*;
+
+public class FileEncryption extends EncryptionType<FileEncryption> {
+
+    private static final int BUFFER_SIZE = 4096;
+
+    private final File ptFile;
+    private final File ctFile;
+
+    private final FileOutputStream fos;
+
+    private final BufferedInputStream stream;
+    private final FileInputStream fileInputStream;
+    private final AES aes;
+
+    private final Mode mode;
+
+    private final KeySchedule schedule;
+
+    private boolean hasClosed = false;
+    public FileEncryption(File plainTextFile, File cipherTextFile, byte[] key, AES aes, Mode mode){
+        try {
+            this.ptFile = plainTextFile;
+            this.ctFile = cipherTextFile;
+            if(!ctFile.exists()) ctFile.createNewFile();
+            this.fos = new FileOutputStream(ctFile);
+            this.fileInputStream = new FileInputStream(ptFile);
+            this.stream = new BufferedInputStream(fileInputStream);
+            this.mode = mode;
+
+            if (aes.keysize / 8 != key.length) throw new InvalidAESKeyException("Invalid key size.");
+            this.aes = aes;
+            this.schedule = new KeyExpander(new AESKey(key), aes).expand().getSchedule();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+            throw new EncryptionException("File not found");
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new EncryptionException("");
+        }
+    }
+
+
+
+    private void close(){
+        try {
+            fileInputStream.close();
+            stream.close();
+            fos.close();
+            hasClosed = true;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public FileEncryption encrypt() {
+        if(hasClosed) return null;
+        try {
+            byte[] buf;
+            int read;
+            for (int i = 0; i < BUFFER_SIZE; i++) {
+                buf = new byte[BUFFER_SIZE];
+                read = stream.read();
+                buf[i] = (byte) (read <= 127 ? read : read - 256);
+            }
+            if(mode == Mode.ECB) encryptECB(buf);
+
+            fos.write(buf);
+
+            return this;
+        }catch (IOException e){
+            e.printStackTrace();
+            throw new EncryptionException("");
+        }
+    }
+
+    private void encryptECB(byte[] buf){
+        EncryptionECB e = new EncryptionECB(buf, schedule).encrypt();
+    }
+
+    @Override
+    public FileEncryption decrypt() {
+        return null; //TODO
+    }
+
+    /**
+     * This is the class used to add padding to the input plaintext before it is encrypted.
+     * The number of bytes added to the padding depends on the length of
+     * the byte modulo 16. The number of padding bytes added is equal to 16 - (L % 16) where L is the length of
+     * the byte array. This means that even if the length of the byte array is divisible by 16, padding is added,
+     * such that the program does not need to compute whether a removal of padding is required during decryption.
+     * */
+    public static class Padding{
+
+        private static final byte PADDING_BYTE = 0x00;
+
+        private byte[] bytes;
+        private final int n;
+
+        public Padding(byte[] bytes){
+            this.bytes = bytes;
+            n = bytes.length % 16;
+        }
+
+        public Padding pad(){
+            int p = n == 0 ? 16 : 16 - n;
+            byte[] res = new byte[bytes.length + p];
+            System.arraycopy(bytes, 0, res, 0, bytes.length);
+            for(int i = bytes.length; i < res.length; i++){
+                res[i] = (byte) (i == res.length - 1 ? p : PADDING_BYTE);
+            }
+            bytes = res;
+            return this;
+        }
+
+        public Padding unpad(){
+            int p = bytes[bytes.length - 1];
+            if(p < 1 ||p > 16) throw new PaddingException("Invalid final byte. Final byte must numerically represent a number from 1 to 16.");
+            byte[] newBytes = new byte[bytes.length - p];
+            System.arraycopy(bytes, 0, newBytes, 0 ,newBytes.length);
+            bytes = newBytes;
+            return this;
+        }
+
+        public byte[] getBytes() {
+            return bytes;
+        }
+    }
+}

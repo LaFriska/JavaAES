@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/Encryption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/Mode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/EncryptionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/FileEncryption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/FileEncryption.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/Padding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/exceptions/EncryptionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/Encryption.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/exceptions/PaddingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/exceptions/PaddingException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,6 +71,10 @@
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="com.friska.javaaes.cipher.GaloisOperation" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/testfiles" />
+      <recent name="$PROJECT_DIR$/src/main/testfiles/resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -108,7 +118,13 @@
       <workItem from="1692695495778" duration="5683000" />
       <workItem from="1692788811151" duration="3269000" />
       <workItem from="1692798333308" duration="6113000" />
-      <workItem from="1692842261742" duration="10923000" />
+      <workItem from="1692842261742" duration="11350000" />
+      <workItem from="1693002558262" duration="1376000" />
+      <workItem from="1693024918930" duration="2335000" />
+      <workItem from="1693037020387" duration="1447000" />
+      <workItem from="1693041835388" duration="1529000" />
+      <workItem from="1693192864115" duration="48000" />
+      <workItem from="1693194099718" duration="462000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -250,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692868696561</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Added padding function">
+      <created>1692955847740</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1692955847741</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,14 +300,15 @@
     <MESSAGE value="Renamed add() --&gt; addRoundKey()" />
     <MESSAGE value="Added initialisation vector param into Block" />
     <MESSAGE value="ECB encryption added for byte array buffers" />
-    <option name="LAST_COMMIT_MESSAGE" value="ECB encryption added for byte array buffers" />
+    <MESSAGE value="Added padding function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added padding function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>65</line>
+          <line>71</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
