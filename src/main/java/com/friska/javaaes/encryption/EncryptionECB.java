@@ -2,41 +2,21 @@ package com.friska.javaaes.encryption;
 
 import com.friska.javaaes.AES;
 import com.friska.javaaes.cipher.Block;
-import com.friska.javaaes.cipher.Cipher;
-import com.friska.javaaes.exceptions.InvalidInputBytesException;
-import com.friska.javaaes.key.AESKey;
-import com.friska.javaaes.key.KeyExpander;
-import com.friska.javaaes.key.KeySchedule;
 
 import java.util.Arrays;
 
-public class EncryptionECB implements Cipher<EncryptionECB> {
+final public class EncryptionECB extends EncryptionType<EncryptionECB> {
 
-    private final byte[] buffer;
-    private int pointer;
-
-    private final KeySchedule schedule;
-
-    public EncryptionECB(byte[] inputByteBuffer, KeySchedule schedule){
-        if(inputByteBuffer.length % 16 != 0) throw new InvalidInputBytesException("Input bytes must be divisible by 16.");
-        resetPointer();
-        this.buffer = inputByteBuffer;
-        this.schedule = schedule;
-    }
-
-    public EncryptionECB(byte[] inputByteBuffer, byte[] key, AES aes){
-        this(inputByteBuffer, new KeyExpander(new AESKey(key), aes).expand().getSchedule());
-    }
-
-    private void resetPointer(){
-        this.pointer = 0;
+    public EncryptionECB(byte[] inputBytes, byte[] key, AES aes){
+        super(inputBytes, key, aes);
     }
 
     @Override
     public EncryptionECB encrypt() {
+        plaintext = Padding.pad(plaintext);
         resetPointer();
-        while(pointer + 16 <= buffer.length){
-            System.arraycopy(new Block(Arrays.copyOfRange(buffer, pointer, pointer + 16), schedule).encrypt().getOutputBytes(), 0, buffer, pointer,16);
+        while(pointer + 16 <= plaintext.length){
+            System.arraycopy(new Block(Arrays.copyOfRange(plaintext, pointer, pointer + 16), schedule).encrypt().getOutputBytes(), 0, plaintext, pointer,16);
             pointer += 16;
         }
         return this;
@@ -44,15 +24,16 @@ public class EncryptionECB implements Cipher<EncryptionECB> {
 
     @Override
     public EncryptionECB decrypt() {
+        plaintext = Padding.unpad(plaintext);
         resetPointer();
-        while(pointer + 16 < buffer.length){
-            System.arraycopy(new Block(Arrays.copyOfRange(buffer, pointer, pointer + 16), schedule).decrypt().getOutputBytes(), 0, buffer, pointer,16);
+        while(pointer + 16 < plaintext.length){
+            System.arraycopy(new Block(Arrays.copyOfRange(plaintext, pointer, pointer + 16), schedule).decrypt().getOutputBytes(), 0, plaintext, pointer,16);
             pointer += 16;
         }
         return this;
     }
 
     public byte[] getBytes() {
-        return buffer;
+        return plaintext;
     }
 }

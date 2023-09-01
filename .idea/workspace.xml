@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bca8e03-aaf6-4446-a231-009ebf5acc6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/EncryptionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/FileEncryption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/FileEncryption.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/Padding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/exceptions/EncryptionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/Encryption.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/exceptions/PaddingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/exceptions/PaddingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/EncryptionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/EncryptionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/FileEncryption.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/EncryptionECB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/EncryptionECB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/Padding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/encryption/Padding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/util/ByteUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/friska/javaaes/util/ByteUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +33,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
   <component name="ProjectId" id="2U9wV1tydVBSQNWmwYiEWJrwr09" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -124,7 +118,13 @@
       <workItem from="1693037020387" duration="1447000" />
       <workItem from="1693041835388" duration="1529000" />
       <workItem from="1693192864115" duration="48000" />
-      <workItem from="1693194099718" duration="462000" />
+      <workItem from="1693194099718" duration="1762000" />
+      <workItem from="1693414210871" duration="547000" />
+      <workItem from="1693446675324" duration="963000" />
+      <workItem from="1693524496674" duration="355000" />
+      <workItem from="1693524890490" duration="177000" />
+      <workItem from="1693525082870" duration="65000" />
+      <workItem from="1693525277995" duration="2436000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized block cipher and various other classes">
       <created>1692422117948</created>
@@ -273,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692955847741</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Refactored Padding, created FileEncryption class and draft">
+      <created>1693194622564</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693194622564</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,19 +308,20 @@
     <MESSAGE value="Added initialisation vector param into Block" />
     <MESSAGE value="ECB encryption added for byte array buffers" />
     <MESSAGE value="Added padding function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added padding function" />
+    <MESSAGE value="Refactored Padding, created FileEncryption class and draft" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored Padding, created FileEncryption class and draft" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>71</line>
+          <line>64</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/friska/javaaes/test/Test.java</url>
-          <line>18</line>
+          <line>20</line>
           <properties class="com.friska.javaaes.test.Test" method="main">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

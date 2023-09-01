@@ -34,16 +34,19 @@ public class ByteUtil {
         return bytes;
     }
 
-    public static String byteArrayToHexString(byte[] byteArray) {
+    public static String byteArrayToHexString(byte[] byteArray) {return byteArrayToHexString(byteArray, false);}
+
+    public static String byteArrayToHexString(byte[] byteArray, boolean addSpace) {
         StringBuilder hexString = new StringBuilder();
 
         for (byte b : byteArray) {
             String hex = String.format("%02X", b & 0xFF); // Convert byte to 2-digit hex
-            hexString.append(hex).append(" ");
+            hexString.append(hex);
+            if(addSpace) hexString.append(" ");
         }
 
-        // Remove the trailing space
-        if (hexString.length() > 0) {
+        // Removes the finalZ space
+        if (!hexString.isEmpty() && addSpace) {
             hexString.setLength(hexString.length() - 1);
         }
 

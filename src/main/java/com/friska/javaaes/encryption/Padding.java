@@ -13,36 +13,23 @@ public class Padding {
 
     private static final byte PADDING_BYTE = 0x00;
 
-    private byte[] bytes;
-    private final int n;
-
-    public Padding(byte[] bytes){
-        this.bytes = bytes;
-        n = bytes.length % 16;
-    }
-
-    public Padding pad(){
+    public static byte[] pad(byte[] bytes){
+        final int n = bytes.length % 16;
         int p = n == 0 ? 16 : 16 - n;
         byte[] res = new byte[bytes.length + p];
         System.arraycopy(bytes, 0, res, 0, bytes.length);
         for(int i = bytes.length; i < res.length; i++){
             res[i] = (byte) (i == res.length - 1 ? p : PADDING_BYTE);
         }
-        bytes = res;
-        return this;
+        return res;
     }
 
-    public Padding unpad(){
+    public static byte[] unpad(byte[] bytes){
         int p = bytes[bytes.length - 1];
         if(p < 1 ||p > 16) throw new PaddingException("Invalid final byte. Final byte must numerically represent a number from 1 to 16.");
-        byte[] newBytes = new byte[bytes.length - p];
-        System.arraycopy(bytes, 0, newBytes, 0 ,newBytes.length);
-        bytes = newBytes;
-        return this;
-    }
-
-    public byte[] getBytes() {
-        return bytes;
+        byte[] res = new byte[bytes.length - p];
+        System.arraycopy(bytes, 0, res, 0 ,res.length);
+        return res;
     }
 
 }
